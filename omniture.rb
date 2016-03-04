@@ -27,14 +27,17 @@ run do
   #switch to debugger
   @session.within_window new_window do
     omniture_node = @session.find 'td#request_list_cell'
-    omniture_text = omniture_node.text 
-    if omniture_text == nil #quick check to make sure we have something
+    #notice the call to native. This returns text that can be split into lines
+    omniture_text = omniture_node.native.text
+
+    #quick check to make sure we have something
+    if omniture_text == nil 
       sleep 1
       omniture_node = @session.find 'td#request_list_cell'
       omniture_node = @session.find 'td#request_list_cell'
-      omniture_text = omniture_node.text 
+      omniture_text = omniture_node.native.text
     end
 
-    puts omniture_text.length
+    expect(omniture_text.lines[2]).to eq("Mbox Name adobe-global-mbox\n")
   end
 end
