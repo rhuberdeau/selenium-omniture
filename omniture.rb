@@ -34,7 +34,6 @@ run do
     if omniture_text == nil 
       sleep 1
       omniture_node = @session.find 'td#request_list_cell'
-      omniture_node = @session.find 'td#request_list_cell'
       omniture_text = omniture_node.native.text
     end
 
