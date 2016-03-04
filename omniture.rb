@@ -37,6 +37,6 @@ run do
       omniture_text = omniture_node.native.text
     end
 
-    expect(omniture_text.lines[2]).to eq("Mbox Name adobe-global-mbox\n")
+    expect(omniture_text.lines.include?("Mbox Name adobe-global-mbox\n")).to be true
   end
 end
